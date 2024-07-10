@@ -12,12 +12,62 @@
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="20px">
           <mat-form-field>
             <mat-label>
-                Nombres
+              Nombres
             </mat-label>
-            <input type="text" formControlName="nombres" matInput required>
+            <input matInput formControlName="nombres" type="text" required>
+            @if(registerForm.controls['nombres'].hasError('required')){
+              <mat-error>
+                Ingrese su nombre completo
+              </mat-error>
+            }
           </mat-form-field>
+          <mat-form-field appearance="fill" fxFlex>
+            <mat-label>
+              Correo Electronico
+            </mat-label>
+            <input matInput formControlName="email" type="email" required>
+            @if(registerForm.controls['email'].hasError('required')){
+              <mat-error>
+                Correo electronico es requerido
+              </mat-error>
+            }
+            @if(registerForm.controls['email'].hasError('email')){
+              <mat-error>
+                Introduzca un correo electrónico válido
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="fill" fxFlex>
+            <mat-label>
+              Contraseña
+            </mat-label>
+            <input matInput formControlName="password" type="password" required>
+            @if(registerForm.controls['password'].hasError('required')){
+              <mat-error>
+                Contraseña requerida
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="fill" fxFlex>
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput formControlName="confirmPassword" type="password" required>
+            <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
+              Confirmar contraseña es requerido
+            </mat-error>
+            <mat-error *ngIf="registerForm.hasError('passwordMismatch')">
+              Las contraseñas no coinciden
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="full-width">Registrarse</button>
         </form>
       </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+        <button mat-button color="accent" routerLink="/auth/login">Login</button>
+        <button mat-button color="accent" routerLink="/auth/forgot-password">Forgot Password?</button>
+      </mat-card-actions>
+      <mat-card-footer fxLayout="row" fxLayoutAlign="center" class="mb-1">
+        Diris LN 2024
+      </mat-card-footer>
     </mat-card>
   </div>
   <div fxFlex="40%" fxFlex.lt-sm="10" fxFlex.lt-md="20">
