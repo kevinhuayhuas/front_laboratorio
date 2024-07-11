@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService } from '../auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,9 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registerForm : FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar) {
     this.registerForm = this.fb.group({
-      nombres: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirmPassword: ['', Validators.required]
@@ -24,7 +25,18 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Formulario válido', this.registerForm.value);
+      this.authService.register(this.registerForm.value).subscribe(
+        (response) => {
+          this.snackBar.open('Se registro el usuario con éxito', 'Cerrar', {
+            duration: 3000,
+          });
+        },
+        (error) => {
+          this.snackBar.open('Error en el registro', 'Cerrar', {
+            duration: 3000,
+          });
+        }
+      );
     } else {
       console.log('Formulario inválido');
     }

@@ -14,8 +14,8 @@
             <mat-label>
               Nombres
             </mat-label>
-            <input matInput formControlName="nombres" type="text" required>
-            @if(registerForm.controls['nombres'].hasError('required')){
+            <input matInput formControlName="name" type="text" required>
+            @if(registerForm.controls['name'].hasError('required')){
               <mat-error>
                 Ingrese su nombre completo
               </mat-error>

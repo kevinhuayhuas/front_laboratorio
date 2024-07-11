@@ -1,0 +1,10 @@
+<!-- admin/layout/layout.component.html -->
+<div fxLayout="row" class="main-layout">
+  <app-sidebar fxFlex="20%"></app-sidebar>
+  <div fxFlex="80%" fxLayout="column">
+    <app-navbar></app-navbar>
+    <div fxFlex>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

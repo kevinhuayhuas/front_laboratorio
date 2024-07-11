@@ -10,7 +10,7 @@
         <mat-card-title class="mb-2 centrar" fxLayoutAlign="center center">Sistema de Laboratorio Referencial</mat-card-title>
         <form [formGroup]="loginForm" (ngSubmit) = "onSubmit()" fxLayout="column" fxLayoutGap="20px">
           <mat-form-field appearance="fill" fxFlex>
-            <mat-label>centrar
+            <mat-label>
               Correo Electronico
             </mat-label>
             <input matInput formControlName="email" type="email" required>
@@ -29,7 +29,7 @@
             <mat-label>
               Contraseña
             </mat-label>
-            <input matInput formControlName="password" type="password" required>
+            <input matInput formControlName="password" type="password" required >
             @if(loginForm.controls['password'].hasError('required')){
               <mat-error>
                 Contraseña requerida

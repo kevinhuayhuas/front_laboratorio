@@ -8,7 +8,6 @@ import { ForgotPasswordComponent} from "./forgot-password/forgot-password.compon
 import { AuthRoutingModule } from './auth-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule,ReactiveFormsModule }   from '@angular/forms';
-import { AuthService }  from './auth.service';
 
 import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
