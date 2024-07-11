@@ -32,9 +32,12 @@ export class RegisterComponent implements OnInit {
           });
         },
         (error) => {
-          this.snackBar.open('Error en el registro', 'Cerrar', {
-            duration: 3000,
-          });
+          if(error.error){
+            this.snackBar.open(error.error.messages.email, 'Cerrar', {
+              duration: 3000,
+            });
+          }
+          console.log(error);
         }
       );
     } else {
